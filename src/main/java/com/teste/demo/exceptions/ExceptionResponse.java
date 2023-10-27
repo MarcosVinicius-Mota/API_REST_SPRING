@@ -1,20 +1,11 @@
 package com.teste.demo.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ExceptionResponse implements Serializable {
 
     @Serial
@@ -24,4 +15,36 @@ public class ExceptionResponse implements Serializable {
     private String message;
     private String details;
 
+    public ExceptionResponse(Instant timestamp, String message, String details) {
+        this.timestamp = timestamp;
+        this.message = message;
+        this.details = details;
+    }
+
+    public ExceptionResponse() {
+    }
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 }
