@@ -1,13 +1,14 @@
 package com.teste.demo.services;
 
 import com.teste.demo.Repository.PersonRepository;
-import com.teste.demo.controller.PersonController;
+import com.teste.demo.data.vo.v1.PersonDTO;
 import com.teste.demo.exceptions.handler.ResourceNotFoundException;
+import com.teste.demo.mapper.MyModelMapper;
 import com.teste.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,46 +18,47 @@ public class PersonService {
 
     private final Logger logger = Logger.getLogger(PersonService.class.getName());
 
+
     private final PersonRepository personRepository;
+    private final MyModelMapper modelMapper;
 
     @Autowired
-    public PersonService(PersonRepository personRepository){
+    public PersonService(PersonRepository personRepository, MyModelMapper modelMapper){
         this.personRepository = personRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public Person findById(Long id){
-        return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+    public PersonDTO findById(Long id) {
+        Person entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Not Found"));
+        return modelMapper.map(entity, PersonDTO.class);
     }
 
-    public List<Person> findAll(){
-        logger.info("Finding all people!");
-        return personRepository.findAll();
+    public List<PersonDTO> findAll(){
+        return modelMapper.convertList(personRepository.findAll(), PersonDTO.class);
     }
 
-
-    public Person createPerson(Person person) {
-
+    public PersonDTO createPerson(PersonDTO person) {
         logger.info("Creating one person!");
-        return personRepository.save(person);
+
+        Person entity = modelMapper.map(person, Person.class);
+        Person saved = personRepository.save(entity);
+        return modelMapper.map(saved, PersonDTO.class);
     }
 
-    public Person updatePerson(Person person) {
+    public PersonDTO updatePerson(PersonDTO person) {
+        Person entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("Not Found!"));
 
-        logger.info("Updating person!");
-        Person p = findById(person.getId());
+        entity.setFirstName(person.getFirstName());
+        entity.setLastName(person.getLastName());
+        entity.setAddress(person.getAddress());
+        entity.setGender(person.getGender());
 
-        p.setFirstName(person.getFirstName());
-        p.setLastName(person.getLastName());
-        p.setGender(person.getGender());
-        p.setAddress(person.getAddress());
-
-        return personRepository.save(p);
+        Person saved = personRepository.save(entity);
+        return modelMapper.map(saved, PersonDTO.class);
     }
 
     public void delete(Long id){
-        logger.info("Deleting id: " + id);
-        Person p = findById(id);
+        Person p = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Not Found!!"));
         personRepository.delete(p);
     }
-
 }
