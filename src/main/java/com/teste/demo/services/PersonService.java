@@ -1,7 +1,7 @@
 package com.teste.demo.services;
 
 import com.teste.demo.Repository.PersonRepository;
-import com.teste.demo.data.vo.v1.PersonDTO;
+import com.teste.demo.data.dto.v1.PersonDTO;
 import com.teste.demo.exceptions.handler.ResourceNotFoundException;
 import com.teste.demo.mapper.MyModelMapper;
 import com.teste.demo.model.Person;
@@ -22,7 +22,6 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final MyModelMapper modelMapper;
 
-    @Autowired
     public PersonService(PersonRepository personRepository, MyModelMapper modelMapper){
         this.personRepository = personRepository;
         this.modelMapper = modelMapper;

@@ -1,6 +1,6 @@
 package com.teste.demo.unittests.mapper;
 
-import com.teste.demo.data.vo.v1.PersonDTO;
+import com.teste.demo.data.dto.v1.PersonDTO;
 import com.teste.demo.model.Person;
 
 import java.util.ArrayList;
