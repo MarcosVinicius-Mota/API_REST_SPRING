@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/person/v1")
 public class PersonController {
 
-    private final PersonService personService;
+    private PersonService personService;
 
     public PersonController(PersonService personService){
         this.personService = personService;
