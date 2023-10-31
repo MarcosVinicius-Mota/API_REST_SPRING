@@ -82,6 +82,7 @@ public class PersonService {
         Person saved = personRepository.save(entity);
         PersonDTO dto = personMapper.personToDto(saved);
         dto.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(PersonController.class).findById(dto.getKey())).withSelfRel());
+
         return dto;
     }
 
