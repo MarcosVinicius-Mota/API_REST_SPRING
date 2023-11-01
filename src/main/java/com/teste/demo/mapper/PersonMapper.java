@@ -10,8 +10,10 @@ import java.util.List;
 @Component
 public class PersonMapper {
 
-    private final MyModelMapper modelMapper = new MyModelMapper();
-    public PersonMapper(){
+    @SuppressWarnings("FieldMayBeFinal")
+    private MyModelMapper modelMapper;
+    public PersonMapper(MyModelMapper modelMapper){
+        this.modelMapper = modelMapper;
         modelMapper.typeMap(PersonDTO.class, Person.class).addMapping(PersonDTO::getKey, Person::setId);
         modelMapper.typeMap(Person.class, PersonDTO.class).addMapping(Person::getId, PersonDTO::setKey);
     }

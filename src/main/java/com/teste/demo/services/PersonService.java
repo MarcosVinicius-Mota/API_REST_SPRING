@@ -5,7 +5,6 @@ import com.teste.demo.controller.PersonController;
 import com.teste.demo.data.dto.v1.PersonDTO;
 import com.teste.demo.exceptions.handler.RequiredObjectInNullException;
 import com.teste.demo.exceptions.handler.ResourceNotFoundException;
-import com.teste.demo.mapper.MyModelMapper;
 import com.teste.demo.mapper.PersonMapper;
 import com.teste.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;

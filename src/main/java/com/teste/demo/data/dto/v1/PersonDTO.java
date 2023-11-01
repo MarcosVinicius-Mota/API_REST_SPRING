@@ -1,9 +1,7 @@
 package com.teste.demo.data.dto.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.teste.demo.model.Person;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
