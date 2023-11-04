@@ -4,8 +4,10 @@ package com.teste.demo.config;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.utils.SpringDocUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.hateoas.Links;
 
 @Configuration
 public class OpenApiConfig {
@@ -13,6 +15,8 @@ public class OpenApiConfig {
 
     @Bean
     public OpenAPI customOpenAPI(){
+        //SpringDocUtils.getConfig().addResponseTypeToIgnore(Links.class);
+
         return new OpenAPI().info(
                 new Info()
                 .title("Spring Boot API")
