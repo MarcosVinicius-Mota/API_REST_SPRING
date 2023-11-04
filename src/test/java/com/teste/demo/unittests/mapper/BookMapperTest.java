@@ -2,11 +2,10 @@ package com.teste.demo.unittests.mapper;
 
 import com.teste.demo.data.dto.v1.BookDTO;
 import com.teste.demo.mapper.BookMapper;
-import com.teste.demo.mapper.MyModelMapper;
 import com.teste.demo.model.Book;
-import jakarta.persistence.Entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class BookMapperTest {
     public void init(){
 
         mockBook = new MockBook();
-        mapper = new BookMapper(new MyModelMapper());
+        mapper = new BookMapper(new ModelMapper());
 
     }
 

@@ -3,7 +3,6 @@ package com.teste.demo.unittests.mockito;
 import com.teste.demo.Repository.PersonRepository;
 import com.teste.demo.data.dto.v1.PersonDTO;
 import com.teste.demo.exceptions.handler.RequiredObjectInNullException;
-import com.teste.demo.mapper.MyModelMapper;
 import com.teste.demo.mapper.PersonMapper;
 import com.teste.demo.model.Person;
 import com.teste.demo.services.PersonService;
@@ -18,8 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.modelmapper.ModelMapper;
 
 import java.util.Optional;
 
@@ -40,7 +38,7 @@ public class PersonServicesTest {
     @Mock
     private PersonMapper personMapper;
 
-    private PersonMapper realpersonMapper = new PersonMapper(new MyModelMapper());
+    private PersonMapper realpersonMapper = new PersonMapper(new ModelMapper());
 
     @BeforeEach
     void setUp() throws Exception {

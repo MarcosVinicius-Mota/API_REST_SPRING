@@ -1,18 +1,22 @@
 package com.teste.demo.mapper;
 
 
+import com.teste.demo.data.dto.v1.BookDTO;
 import com.teste.demo.data.dto.v1.PersonDTO;
+import com.teste.demo.model.Book;
 import com.teste.demo.model.Person;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class PersonMapper {
 
     @SuppressWarnings("FieldMayBeFinal")
-    private MyModelMapper modelMapper;
-    public PersonMapper(MyModelMapper modelMapper){
+    private ModelMapper modelMapper;
+    public PersonMapper(ModelMapper modelMapper){
         this.modelMapper = modelMapper;
         modelMapper.typeMap(PersonDTO.class, Person.class).addMapping(PersonDTO::getKey, Person::setId);
         modelMapper.typeMap(Person.class, PersonDTO.class).addMapping(Person::getId, PersonDTO::setKey);
@@ -27,11 +31,19 @@ public class PersonMapper {
     }
 
     public List<PersonDTO> personToDtoList(List<Person> personList){
-        return modelMapper.convertList(personList, PersonDTO.class);
+        List<PersonDTO> DtoList = new ArrayList<>();
+        for(Person person : personList){
+            DtoList.add(personToDto(person));
+        }
+        return DtoList;
     }
 
     public List<Person> dtoToPersonList(List<PersonDTO> dtoList){
-        return modelMapper.convertList(dtoList, Person.class);
+        List<Person> persons = new ArrayList<>();
+        for(PersonDTO dto : dtoList){
+            persons.add(dtoToPerson(dto));
+        }
+        return persons;
     }
 
 }

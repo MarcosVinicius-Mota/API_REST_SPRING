@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.teste.demo.data.dto.v1.PersonDTO;
-import com.teste.demo.mapper.MyModelMapper;
 import com.teste.demo.mapper.PersonMapper;
 import com.teste.demo.model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 
 public class MapperConverterTest {
     
     MockPerson inputObject;
 
-    private final PersonMapper modelMapper = new PersonMapper(new MyModelMapper());
+    private final PersonMapper modelMapper = new PersonMapper(new ModelMapper());
 
     @BeforeEach
     public void setUp() {
